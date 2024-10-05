@@ -1,0 +1,13 @@
+1 - Ativando a venv
+    cd C:\Users\user\Documents\code\mba\identificador-pii\identificador_pii
+    poetry shell 
+    task test
+2 - 
+
+3 - 
+
+4 - git add .
+
+5 - git commit - m "message"
+
+6 - git push

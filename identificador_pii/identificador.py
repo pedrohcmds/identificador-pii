@@ -1,15 +1,19 @@
-from collections import Counter
+
 import re
 import pandas as pd
-from pandas import DataFrame
+from utils import remove_stopwords, busca_nomes
 
-class IdentificadorPII(DataFrame):
+class IdentificadorPII():
 
-    def __init__(self, df:DataFrame) -> None:
+    def __init__(self) -> None: 
         self.patterns = None
 
     def load_patterns(self) -> dict:
-        """Carrega os padrões para buscar documentos brasileiros.
+        """
+        Carrega os padrões para buscar documentos brasileiros.
+
+
+
         Returns:
             dict: Dicionário com os padrões regex que serão buscados.
         """
@@ -22,57 +26,92 @@ class IdentificadorPII(DataFrame):
         'nis': r'\b\d{3}\.\d{5}\.\d{2}-\d{1}\b|\b\d{11}\b'
         }
 
-        return patterns
+        self.patterns = patterns
+
  
     
-    def add_pattern(self, pattern_name: str) -> dict:
-        ...
-    
-    def remove_pattern(self, pattern_name: str) -> dict:
-        
-        ... 
-
-    def busca_nomes(self, ): 
-        ...
-
-    def remove_stopwords(self):
+    def add_pattern(self, pattern_name: str, pattern_regex: str) -> dict:
         """
-        Remove as stopwords do texto.
+        Função que adiciona um novo padrão regex a ser buscado
+
         Args:
-            texto (str): Texto a ser processado.
-        Returns:
-            str: Texto sem stopwords.
+            pattern_name (str): nome que será dado ao novo padrão
+            pattern_regex (str): reges que registra o comportamento daquele padrão
         """
-        ...
+        self.patterns[pattern_name] = pattern_regex
+    
+    def remove_pattern(self, pattern_name: str):
+        """
+        Função que adiciona um novo padrão regex a ser buscado
 
-    def classify_column(self, coluna):
+        Args:
+            pattern_name (str): nome que será dado ao novo padrão
         """
-        Função que busca os nomes e sobrenomes mais comuns no conteúdo da coluna.
+        
+        self.patterns.pop(pattern_name)
+
+
+    def classify_column(self, df, coluna):
+        """
+        Função que clasifica uma única coluna de um dataframe
 
         Args:
             df (pandas.DataFrame): Conjunto de dados a ser analisao.
-            column_name (str): Nome da coluna a ser analisada.
+            coluna (str): Nome da coluna a ser analisada.
 
         Returns:
-            column_name (str): Nome da coluna.
+            coluna (str): Nome da coluna.
             nome (str): nome.
             match_count (int): Quantidade de correspondencias encontradas.
             perc_match_count (float): Percentual de correspondencias encontradas.
         """
+
+        self.load_patterns()
+        patterns_to_check = self.patterns
+
+        match_counts = {}
+        for pattern in patterns_to_check:
+            matches = df[coluna].astype(str).str.match(patterns_to_check[pattern], na=False)
+            match_counts[pattern] = matches.sum()
+
+        max_matches_col = max(match_counts, key=match_counts.get)
+        max_matches_count = match_counts[max_matches_col]
+        max_matches_perc = round((max_matches_count / len(df)),2)
+
+
+        if df[coluna].dtype == object:
+            res = busca_nomes(df, coluna)
+            if res[2] > max_matches_count:
+                pred = 'nome'
+                max_matches_count = res[2]
+                max_matches_perc = res[3]
+                max_matches_col = 'nome'
+
+        if max_matches_count == 0:
+            pred = 'any'
+            max_matches_col = ''
+        elif max_matches_perc <= .3:
+            pred = 'other'
+        else:
+            pred = max_matches_col
+
+        return [coluna, pred, max_matches_col,max_matches_count,  max_matches_perc]
+
+
     
-    def classify_df(self):
+    def classify_df(self, df):
         """
-        Classifica uma coluna do dataframe.
+        Classifica um dataframe.
 
         Args:
             df (pandas.DataFrame): Conjunto de dados a ser analisao.
-            column_name (str): Nome da coluna a ser analisada.
 
         Returns:
-            column_name (str): Nome da coluna.
-            pred (str): predição do tipo de dados presente na coluna.
-            max_matches_col (str): Nome da coluna com mais correspondencias.
-            max_matches_count (int): Quantidade de correspondencias encontradas.
-            max_matches_perc (float): Percentual de correspondencias encontradas.
+            df (pandas.DataFrame): Dataframe as informações de classificação.
         """
-        ...
+        preds = []
+        
+        for column in df.columns:
+            preds.append(self.classify_column(df, column))
+        return pd.DataFrame(preds, columns= ['column_name', 'prediction', 'most_matched_pii','match_count', 'match_perc'])
+            
