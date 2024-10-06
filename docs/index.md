@@ -12,7 +12,7 @@
 
 ### Instalando o pacote via pip
 
-<code> pip install projeto-pii-brasil </code>
+<code> pip install identificador-pii </code>
 
 ## Comece aqui
 
