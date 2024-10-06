@@ -11,6 +11,8 @@ build:
   jobs:
     post_create_environment:
       - pip install poetry
+      - pip install mkdocs-material
+      - pip install 'mkdocstrings[python]'
 
 
     post_install:
