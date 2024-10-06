@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "identificador-pii"
-version = "0.1.0"
+version = "0.1.1"
 description = "Este pacote visa criar uma ferramenta simples que pode auxiliar pessoas que trbalham com dados a identificar se em um determinado conjunto de dados, existem dados pessoais."
 authors = ["Pedro Campagna <pedrohcmds@gmail.com>"]
 readme = "README.md"
