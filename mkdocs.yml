@@ -4,7 +4,7 @@ repo_name: projeto-pii-brasil
 edit_uri: tree/main/docs
 
 theme:
-  name: material
+  name: readthedocs
   language: pt-BR
 
 markdown_extensions:
