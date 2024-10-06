@@ -20,3 +20,4 @@ plugins:
     handlers:
       python:
         paths: [identificador]
+- mermaid2:

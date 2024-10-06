@@ -18,26 +18,72 @@
 
 ### Classificando uma coluna de um DataFrame
 
-    import pandas as pd
+```python
 
-    data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
-            'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
-            'coluna3': ['Fábio Santos', 'Sergio Conceição', 'Maria Souza', 'João Rodrigues', 'Richard Tomiaka' ],
-            'coluna4':[15, 200, 456, 22, 765 ]}
-    df = pd.DataFrame(data
+import pandas as pd
 
-    clasify_column(df, 'coluna1')
+data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
+        'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
+        'coluna3': ['Fábio Santos', 'Sergio Conceição', 'Maria Souza', 'João Rodrigues', 'Richard Tomiaka' ],
+        'coluna4':[15, 200, 456, 22, 765 ]}
+df = pd.DataFrame(data
 
+clasify_column(df, 'coluna1')
 
+```
+
+![](assets\classify_column_result.png)
 
 ### Classificando todas as colunas de um DataFrame
 
-    data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
-            'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
-            'coluna3': ['Fábio Santos', 'Sergio Conceição', 'Maria Souza', 'João Rodrigues', 'Richard Tomiaka' ],
-            'coluna4':[15, 200, 456, 22, 765 ]}
-    df = pd.DataFrame(data)
+```python
 
-    classify_df(df)
+data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
+        'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
+        'coluna3': ['Fábio Santos', 'Sergio Conceição', 'Maria Souza', 'João Rodrigues', 'Richard Tomiaka' ],
+        'coluna4':[15, 200, 456, 22, 765 ]}
+df = pd.DataFrame(data)
+
+classify_df(df)
+
+```
+![](assets\classify_df_result.png)
+
+### Fluxograma de uso da biblioteca
+
+```mermaid
+graph TD;
+    %% Definição do fluxo
+    A[Início] --> B[Carregar dataset];
+    B --> C[Usar biblioteca identificador_pii?];
+    C -->|Sim| D[Escolher função];
+    C -->|Não| F[Fim];
+    
+    D --> E1[Classificar uma coluna];
+    D --> E2[Classificar todas as colunas];
+    
+    E1 --> G1[Passar nome da coluna como parâmetro];
+    G1 --> H1[Classificar coluna];
+    
+    H1 --> I1[Verificar resultados];
+
+    E2 --> G2[Classificar todas as colunas do dataframe];
+    G2 --> H2[Classificar dataframe];
+    H2 --> I2[Verificar resultados];
+
+    I1 --> F[Fim];
+    I2 --> F[Fim];
+
+    %% Definindo animações para os nós
+    classDef animated fill:#AAA10,stroke:#333,stroke-width:4px,animation: fade-in 2s ease-in-out infinite alternate;
+
+    %% Aplicando animações aos nós para guiar o usuário
+    class A,B,C,D,E1,E2,G1,H1,I1,G2,H2,I2,F animated;
+
+```
 
 
+
+### Sobre esta página
+
+Esta página foi escrita em 06/10/2024. 
