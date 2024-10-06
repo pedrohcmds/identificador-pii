@@ -14,6 +14,10 @@
 
 <code> pip install projeto-pii-brasil </code>
 
+## Documentação
+
+Acesse a documentação [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/)
+
 ## Comece aqui
 
 ### Classificando uma coluna de um DataFrame
