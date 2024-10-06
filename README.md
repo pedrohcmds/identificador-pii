@@ -16,7 +16,7 @@
 
 ## Documentação
 
-Acesse a documentação [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/)
+Clique [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/) para ir para a documentação oficial
 
 ## Comece aqui
 
@@ -82,3 +82,11 @@ graph TD;
 
     %% Aplicando animações aos nós para guiar o usuário
     class A,B,C,D,E1,E2,G1,H1,I1,G2,H2,I2,F animated;
+
+```
+ <br>
+
+### Badges
+<br>
+
+[![Documentation Status](https://readthedocs.org/projects/projeto-pii-brasil/badge/?version=latest)](https://projeto-pii-brasil.readthedocs.io/en/latest/?badge=latest)

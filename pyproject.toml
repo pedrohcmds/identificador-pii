@@ -4,6 +4,19 @@ version = "0.1.0"
 description = ""
 authors = ["Pedro Campagna <pedrohcmds@gmail.com>"]
 readme = "README.md"
+packages = [{include="identificador_pii"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Natural Language :: Portuguese (Brazilian)",
+    "Topic :: Education",
+    "Programming Language :: Python :: 3"
+]
+
+[tool.project.urls]
+"Documentação" = "https://projeto-pii-brasil.readthedocs.io/en/latest/"
+"Repositório" = "https://github.com/pedrohcmds/identificador-pii"
+"Bug Tracker" = "https://github.com/pedrohcmds/identificador-pii/issues"
+
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -46,3 +59,4 @@ docs = "mkdocs serve"
 pre_test = "task lint"
 test = "pytest -s -x --cov=identificador_pii -vv"
 post_test = "coverage html"
+
