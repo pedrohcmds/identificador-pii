@@ -20,7 +20,10 @@
 
 ```python
 
+from identificador_pii.identificador import IdentificadorPII
 import pandas as pd
+
+a = IdentificadorPII()
 
 data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
         'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
@@ -28,7 +31,7 @@ data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321
         'coluna4':[15, 200, 456, 22, 765 ]}
 df = pd.DataFrame(data
 
-clasify_column(df, 'coluna1')
+a.clasify_column(df, 'coluna1')
 
 ```
 
@@ -44,7 +47,7 @@ data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321
         'coluna4':[15, 200, 456, 22, 765 ]}
 df = pd.DataFrame(data)
 
-classify_df(df)
+a.classify_df(df)
 
 ```
 ![](assets\classify_df_result.png)

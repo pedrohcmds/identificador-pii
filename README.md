@@ -22,8 +22,15 @@ Clique [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/) para ir para
 
 ### Classificando uma coluna de um DataFrame
 
+
+
 ```python
+
+    from identificador_pii.identificador import IdentificadorPII
     import pandas as pd
+
+    a = IdentificadorPII()
+
 
     data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
             'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
@@ -31,7 +38,7 @@ Clique [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/) para ir para
             'coluna4':[15, 200, 456, 22, 765 ]}
     df = pd.DataFrame(data
 
-    clasify_column(df, 'coluna1')
+    a.clasify_column(df, 'coluna1')
 
 ```
 
@@ -39,7 +46,11 @@ Clique [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/) para ir para
 
 ### Classificando todas as colunas de um DataFrame
 
+
 ```python
+
+    from identificador_pii.identificador import IdentificadorPII
+    import pandas as pd
 
     data = {'coluna1': ['12345678901', '98765432109', '123.456.789-01', '987.654.321-09', '123.456.789.01'],
             'coluna2': ['(11) 1234-5678', '(22) 98765-4321', '12345-6789', '98765-4321', '11 12345-6789'],
@@ -47,7 +58,7 @@ Clique [aqui](https://projeto-pii-brasil.readthedocs.io/en/latest/) para ir para
             'coluna4':[15, 200, 456, 22, 765 ]}
     df = pd.DataFrame(data)
 
-    classify_df(df)
+    a.classify_df(df)
 ```
 
 ![](docs\assets\classify_df_result.png)
