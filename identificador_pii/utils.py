@@ -1,7 +1,13 @@
 from collections import Counter
+import os
 
 if __name__ == "__main__":
     ...
+
+def caminho_arquivo():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    arquivo_nomes = os.path.join(base_dir, 'files', 'nomes_e_sobrenomes_comuns.txt')
+    return arquivo_nomes
 
 def remove_stopwords(texto: str):
     """
@@ -46,7 +52,10 @@ def busca_nomes(df, coluna):
         match_count (int): Quantidade de correspondencias encontradas.
         perc_match_count (float): Percentual de correspondencias encontradas.
     """
-    with open('.files\\nomes_e_sobrenomes_comuns.txt', 'r') as arquivo:
+
+    caminho = caminho_arquivo()
+
+    with open( caminho, 'r') as arquivo:
             # Ler todas as linhas do arquivo e armazenar em uma lista
             nomes = arquivo.readlines()
     nomes = nomes[0].split(' ')
