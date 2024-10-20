@@ -46,7 +46,7 @@ def busca_nomes(df, coluna):
         match_count (int): Quantidade de correspondencias encontradas.
         perc_match_count (float): Percentual de correspondencias encontradas.
     """
-    with open('files\\nomes_e_sobrenomes_comuns.txt', 'r') as arquivo:
+    with open('.files\\nomes_e_sobrenomes_comuns.txt', 'r') as arquivo:
             # Ler todas as linhas do arquivo e armazenar em uma lista
             nomes = arquivo.readlines()
     nomes = nomes[0].split(' ')
