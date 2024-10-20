@@ -1,7 +1,7 @@
 
 import re
 import pandas as pd
-from utils import remove_stopwords, busca_nomes
+from .utils import remove_stopwords, busca_nomes
 
 class IdentificadorPII():
 
